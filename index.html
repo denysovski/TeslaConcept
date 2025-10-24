@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tesla Concept | Electron Orbitals</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                            colors: {
+                                tesla: '#000000',
+                            }
+                        }
+            }
+        }
+    </script>
+</head>
+<body class="bg-white text-gray-900 font-sans antialiased">
+    <custom-navbar></custom-navbar>
+    
+    <!-- Hero Section -->
+    <section class="relative h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 bg-black opacity-50 z-10"></div>
+        <video autoplay muted loop class="absolute w-full h-full object-cover">
+            <source src="https://digitalassets.tesla.com/tesla-contents/video/upload/f_auto,q_auto/Homepage-Model-Y-Desktop-NA.mp4" type="video/mp4">
+        </video>
+        <div class="relative z-20 text-center px-6">
+            <h1 class="text-5xl md:text-7xl font-bold text-white mb-6">The Future of Driving</h1>
+            <p class="text-xl md:text-2xl text-white mb-12 max-w-3xl mx-auto">Experience the pinnacle of electric vehicle technology</p>
+            <div class="flex flex-col md:flex-row gap-4 justify-center">
+                <a href="#models" class="bg-gray-900 hover:bg-gray-800 text-white px-6 py-3 rounded-full font-medium transition duration-300 shadow-lg">View Models</a>
+                <a href="#technology" class="bg-white hover:bg-gray-100 text-gray-900 px-6 py-3 rounded-full font-medium transition duration-300 shadow-lg">Explore Tech</a>
+            </div>
+</div>
+    </section>
+
+    <!-- User Experience Section -->
+    <section id="experience" class="py-20 px-6 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16">Exceptional User Experience</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <div class="bg-white p-8 rounded-lg shadow-xl hover:shadow-2xl transition duration-300">
+                    <div class="flex justify-center mb-6">
+                        <i data-feather="navigation" class="w-12 h-12 text-black"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-center">Autopilot</h3>
+                    <p class="text-gray-600 text-center">Advanced driver-assistance system that enables your car to steer, accelerate and brake automatically.</p>
+                </div>
+                <div class="bg-white p-8 rounded-lg shadow-xl hover:shadow-2xl transition duration-300">
+                    <div class="flex justify-center mb-6">
+                        <i data-feather="battery" class="w-12 h-12 text-black"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-center">Supercharging</h3>
+                    <p class="text-gray-600 text-center">Charge up to 200 miles in 15 minutes at any of our 25,000+ Superchargers worldwide.</p>
+                </div>
+                <div class="bg-white p-8 rounded-lg shadow-xl hover:shadow-2xl transition duration-300">
+                    <div class="flex justify-center mb-6">
+                        <i data-feather="smartphone" class="w-12 h-12 text-black"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-center">Mobile App</h3>
+                    <p class="text-gray-600 text-center">Control your car from anywhere with our mobile app - lock/unlock, climate control, and more.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+<!-- Security Section -->
+    <section id="security" class="py-20 px-6 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16">Safety First</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="order-2 md:order-1">
+                    <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/h_1800,w_2880,c_fit,f_auto,q_auto:best/safety-hero" alt="Tesla safety features" class="rounded-lg shadow-2xl w-full">
+                </div>
+<div class="order-1 md:order-2">
+                    <h3 class="text-2xl font-bold mb-4">Designed for Safety</h3>
+                    <p class="text-gray-600 mb-6">Tesla vehicles are engineered to be the safest cars in the world with the lowest probability of occupant injury.</p>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="bg-black rounded-full p-2 mr-4">
+                                <i data-feather="shield" class="w-5 h-5 text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Rigid Structure</h4>
+                                <p class="text-gray-600 text-sm">High-strength architecture and impact-absorbing crumple zones</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-black rounded-full p-2 mr-4">
+                                <i data-feather="alert-octagon" class="w-5 h-5 text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Active Safety</h4>
+                                <p class="text-gray-600 text-sm">360° cameras and sensors for collision avoidance</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-black rounded-full p-2 mr-4">
+                                <i data-feather="zap" class="w-5 h-5 text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Low Center of Gravity</h4>
+                                <p class="text-gray-600 text-sm">Reduces rollover risk thanks to battery placement</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Models Showcase Section -->
+    <section id="models" class="py-20 px-6 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16">Tesla Model Showcase</h2>
+            
+            <!-- Model S -->
+            <div class="bg-white rounded-xl shadow-2xl overflow-hidden mb-16">
+                <div class="grid grid-cols-1 lg:grid-cols-2">
+                    <div class="h-[600px] lg:h-[800px]">
+                    <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/h_1800,w_2880,c_fit,f_auto,q_auto:best/Model-S-Main-Hero-Desktop-LHD" alt="Tesla Model S" class="w-full h-full object-cover">
+</div>
+                    <div class="p-10">
+                        <h3 class="text-3xl font-bold mb-4">Model S Plaid</h3>
+                        <p class="text-2xl text-black mb-6">$89,990</p>
+                        <div class="grid grid-cols-3 gap-4 mb-8">
+                            <div class="bg-gray-100 p-4 rounded-lg">
+                                <p class="text-sm text-gray-500">Range</p>
+                                <p class="text-xl font-bold">396 mi</p>
+                            </div>
+                            <div class="bg-gray-100 p-4 rounded-lg">
+                                <p class="text-sm text-gray-500">0-60 mph</p>
+                                <p class="text-xl font-bold">1.99s</p>
+                            </div>
+                            <div class="bg-gray-100 p-4 rounded-lg">
+                                <p class="text-sm text-gray-500">Top Speed</p>
+                                <p class="text-xl font-bold">200 mph</p>
+                            </div>
+                        </div>
+                        <div class="mb-8">
+                            <h4 class="text-xl font-bold mb-3">Performance</h4>
+                            <p class="text-gray-700 mb-4">Tesla Model S Plaid is the quickest accelerating production car ever built, with industry-leading performance, range and efficiency.</p>
+                            <ul class="space-y-2 text-gray-700">
+                                <li class="flex items-start">
+                                    <i data-feather="check" class="w-5 h-5 text-black mr-2 mt-0.5"></i>
+                                    <span>1,020 horsepower</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i data-feather="check" class="w-5 h-5 text-black mr-2 mt-0.5"></i>
+                                    <span>Tri Motor All-Wheel Drive</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i data-feather="check" class="w-5 h-5 text-black mr-2 mt-0.5"></i>
+                                    <span>1/4 mile in 9.23@155 mph trap speed</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="mb-8">
+                            <h4 class="text-xl font-bold mb-3">Features</h4>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="flex items-center gap-3">
+                                    <i data-feather="cpu" class="w-5 h-5 text-black"></i>
+                                    <span>17" Cinematic Display</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <i data-feather="wifi" class="w-5 h-5 text-black"></i>
+                                    <span>Bluetooth 5.0</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <i data-feather="music" class="w-5 h-5 text-black"></i>
+                                    <span>22 Speaker Audio</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <i data-feather="navigation" class="w-5 h-5 text-black"></i>
+                                    <span>Full Self-Driving Capable</span>
+                                </div>
+                            </div>
+                        </div>
+                            <button class="bg-black text-white px-8 py-3 rounded-full font-medium hover:bg-gray-800 transition duration-300 w-full">
+Order Now
+                            </button>
+                            <button class="learn-more-btn mt-4 w-full inline-flex items-center justify-center">
+                                Learn more information
+                                <i data-feather="info" class="w-4 h-4 ml-3" aria-hidden="true"></i>
+                            </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Model 3 -->
+            <div class="bg-white rounded-xl shadow-2xl overflow-hidden mb-16">
+                <div class="grid grid-cols-1 lg:grid-cols-2">
+                    <div class="h-[600px] lg:h-[800px]">
+                    <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/h_1800,w_2880,c_fit,f_auto,q_auto:best/Model-3-Main-Hero-Desktop-LHD" alt="Tesla Model 3" class="w-full h-full object-cover">
+</div>
+                    <div class="p-10">
+                        <h3 class="text-3xl font-bold mb-4">Model 3 Performance</h3>
+                        <p class="text-2xl text-black mb-6">$52,990</p>
+                        <div class="grid grid-cols-3 gap-4 mb-8">
+                            <div class="bg-gray-100 p-4 rounded-lg">
+                                <p class="text-sm text-gray-500">Range</p>
+                                <p class="text-xl font-bold">315 mi</p>
+                            </div>
+                            <div class="bg-gray-100 p-4 rounded-lg">
+                                <p class="text-sm text-gray-500">0-60 mph</p>
+                                <p class="text-xl font-bold">3.1s</p>
+                            </div>
+                            <div class="bg-gray-100 p-4 rounded-lg">
+                                <p class="text-sm text-gray-500">Top Speed</p>
+                                <p class="text-xl font-bold">162 mph</p>
+                            </div>
+                        </div>
+                        <div class="mb-8">
+                            <h4 class="text-xl font-bold mb-3">Performance</h4>
+                            <p class="text-gray-700 mb-4">Model 3 Performance delivers exceptional handling, aerodynamics and acceleration with dual motor AWD, performance brakes and lowered suspension.</p>
+                            <ul class="space-y-2 text-gray-700">
+                                <li class="flex items-start">
+                                    <i data-feather="check" class="w-5 h-5 text-black mr-2 mt-0.5"></i>
+                                    <span>510 horsepower</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i data-feather="check" class="w-5 h-5 text-black mr-2 mt-0.5"></i>
+                                    <span>Dual Motor All-Wheel Drive</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i data-feather="check" class="w-5 h-5 text-black mr-2 mt-0.5"></i>
+                                    <span>20" Überturbine Wheels</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="mb-8">
+                            <h4 class="text-xl font-bold mb-3">Features</h4>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="flex items-center gap-3">
+                                    <i data-feather="monitor" class="w-5 h-5 text-black"></i>
+                                    <span>15" Touchscreen Display</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <i data-feather="wifi" class="w-5 h-5 text-black"></i>
+                                    <span>Premium Connectivity</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <i data-feather="music" class="w-5 h-5 text-black"></i>
+                                    <span>14 Speaker Audio</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <i data-feather="navigation" class="w-5 h-5 text-black"></i>
+                                    <span>Autopilot Included</span>
+                                </div>
+                            </div>
+                        </div>
+                            <button class="bg-gray-900 text-white px-8 py-3 rounded-full font-medium hover:bg-gray-700 transition duration-300 w-full">
+Order Now
+                            </button>
+                            <button class="learn-more-btn mt-4 w-full inline-flex items-center justify-center">
+                                Learn more information
+                                <i data-feather="info" class="w-4 h-4 ml-3" aria-hidden="true"></i>
+                            </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Model X -->
+            <div class="bg-white rounded-xl shadow-2xl overflow-hidden mb-16">
+                <div class="grid grid-cols-1 lg:grid-cols-2">
+                    <div class="h-[600px] lg:h-[800px]">
+                    <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/h_1800,w_2880,c_fit,f_auto,q_auto:best/Model-X-Main-Hero-Desktop-LHD" alt="Tesla Model X" class="w-full h-full object-cover">
+</div>
+                    <div class="p-10">
+                        <h3 class="text-3xl font-bold mb-4">Model X Plaid</h3>
+                        <p class="text-2xl text-black mb-6">$94,990</p>
+                        <div class="grid grid-cols-3 gap-4 mb-8">
+                            <div class="bg-gray-100 p-4 rounded-lg">
+                                <p class="text-sm text-gray-500">Range</p>
+                                <p class="text-xl font-bold">348 mi</p>
+                            </div>
+                            <div class="bg-gray-100 p-4 rounded-lg">
+                                <p class="text-sm text-gray-500">0-60 mph</p>
+                                <p class="text-xl font-bold">2.5s</p>
+                            </div>
+                            <div class="bg-gray-100 p-4 rounded-lg">
+                                <p class="text-sm text-gray-500">Top Speed</p>
+                                <p class="text-xl font-bold">163 mph</p>
+                            </div>
+                        </div>
+                        <div class="mb-8">
+                            <h4 class="text-xl font-bold mb-3">Performance</h4>
+                            <p class="text-gray-700 mb-4">With the most power and quickest acceleration of any SUV, Model X Plaid is the highest performing SUV ever built. All Model X powertrains pair with high-energy battery systems.</p>
+                            <ul class="space-y-2 text-gray-700">
+                                <li class="flex items-start">
+                                    <i data-feather="check" class="w-5 h-5 text-black mr-2 mt-0.5"></i>
+                                    <span>1,020 horsepower</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i data-feather="check" class="w-5 h-5 text-black mr-2 mt-0.5"></i>
+                                    <span>Tri Motor All-Wheel Drive</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i data-feather="check" class="w-5 h-5 text-black mr-2 mt-0.5"></i>
+                                    <span>1/4 mile in 9.9s</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="mb-8">
+                            <h4 class="text-xl font-bold mb-3">Features</h4>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="flex items-center gap-3">
+                                    <i data-feather="cpu" class="w-5 h-5 text-black"></i>
+                                    <span>17" Touchscreen Display</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <i data-feather="users" class="w-5 h-5 text-black"></i>
+                                    <span>Seating for 7</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <i data-feather="music" class="w-5 h-5 text-black"></i>
+                                    <span>22 Speaker Audio</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <i data-feather="navigation" class="w-5 h-5 text-black"></i>
+                                    <span>Full Self-Driving Capable</span>
+                                </div>
+                            </div>
+                        </div>
+                            <button class="bg-gray-900 text-white px-8 py-3 rounded-full font-medium hover:bg-gray-700 transition duration-300 w-full">
+Order Now
+                            </button>
+                            <button class="learn-more-btn mt-4 w-full inline-flex items-center justify-center">
+                                Learn more information
+                                <i data-feather="info" class="w-4 h-4 ml-3" aria-hidden="true"></i>
+                            </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Model Y -->
+            <div class="bg-white rounded-xl shadow-2xl overflow-hidden mb-16">
+                <div class="grid grid-cols-1 lg:grid-cols-2">
+                    <div class="h-[600px] lg:h-[800px]">
+                    <img src="https://d15-a.sdn.cz/d_15/c_img_oc_A/nO0bgvR9rXBjevbCx7EMXYax/b54e/tesla-model-y-performance-elektromobil-crossover.jpeg?fl=cro,0,0,3840,2160%7Cres,2560,,1%7Cjpg,80,,1" alt="Tesla Model Y" class="w-full h-full object-cover">
+</div>
+                    <div class="p-10">
+                        <h3 class="text-3xl font-bold mb-4">Model Y Performance</h3>
+                        <p class="text-2xl text-black mb-6">$54,490</p>
+                        <div class="grid grid-cols-3 gap-4 mb-8">
+                            <div class="bg-gray-100 p-4 rounded-lg">
+                                <p class="text-sm text-gray-500">Range</p>
+                                <p class="text-xl font-bold">303 mi</p>
+                            </div>
+                            <div class="bg-gray-100 p-4 rounded-lg">
+                                <p class="text-sm text-gray-500">0-60 mph</p>
+                                <p class="text-xl font-bold">3.5s</p>
+                            </div>
+                            <div class="bg-gray-100 p-4 rounded-lg">
+                                <p class="text-sm text-gray-500">Top Speed</p>
+                                <p class="text-xl font-bold">155 mph</p>
+                            </div>
+                        </div>
+                        <div class="mb-8">
+                            <h4 class="text-xl font-bold mb-3">Performance</h4>
+                            <p class="text-gray-700 mb-4">Model Y Performance provides maximum versatility with seating for up to seven adults, a 76 cubic foot cargo area and dual motor AWD with performance brakes and lowered suspension.</p>
+                            <ul class="space-y-2 text-gray-700">
+                                <li class="flex items-start">
+                                    <i data-feather="check" class="w-5 h-5 text-black mr-2 mt-0.5"></i>
+                                    <span>450 horsepower</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i data-feather="check" class="w-5 h-5 text-black mr-2 mt-0.5"></i>
+                                    <span>Dual Motor All-Wheel Drive</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i data-feather="check" class="w-5 h-5 text-black mr-2 mt-0.5"></i>
+                                    <span>21" Überturbine Wheels</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="mb-8">
+                            <h4 class="text-xl font-bold mb-3">Features</h4>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="flex items-center gap-3">
+                                    <i data-feather="monitor" class="w-5 h-5 text-black"></i>
+                                    <span>15" Touchscreen Display</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <i data-feather="users" class="w-5 h-5 text-black"></i>
+                                    <span>Seating for 5-7</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <i data-feather="music" class="w-5 h-5 text-black"></i>
+                                    <span>14 Speaker Audio</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <i data-feather="navigation" class="w-5 h-5 text-black"></i>
+                                    <span>Autopilot Included</span>
+                                </div>
+                            </div>
+                        </div>
+                            <button class="bg-gray-900 text-white px-8 py-3 rounded-full font-medium hover:bg-gray-700 transition duration-300 w-full">
+Order Now
+                            </button>
+                            <button class="learn-more-btn mt-4 w-full inline-flex items-center justify-center">
+                                Learn more information
+                                <i data-feather="info" class="w-4 h-4 ml-3" aria-hidden="true"></i>
+                            </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cybertruck -->
+            <div class="bg-white rounded-xl shadow-2xl overflow-hidden mb-16">
+                <div class="grid grid-cols-1 lg:grid-cols-2">
+                    <div class="h-[600px] lg:h-[800px]">
+                    <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/h_1800,w_2880,c_fit,f_auto,q_auto:best/Cybertruck-Main-Hero-Desktop" alt="Tesla Cybertruck" class="w-full h-full object-cover">
+</div>
+                    <div class="p-10">
+                        <h3 class="text-3xl font-bold mb-4">Cybertruck</h3>
+                        <p class="text-2xl text-black mb-6">$60,990</p>
+                        <div class="grid grid-cols-3 gap-4 mb-8">
+                            <div class="bg-gray-100 p-4 rounded-lg">
+                                <p class="text-sm text-gray-500">Range</p>
+                                <p class="text-xl font-bold">340 mi</p>
+                            </div>
+                            <div class="bg-gray-100 p-4 rounded-lg">
+                                <p class="text-sm text-gray-500">0-60 mph</p>
+                                <p class="text-xl font-bold">2.9s</p>
+                            </div>
+                            <div class="bg-gray-100 p-4 rounded-lg">
+                                <p class="text-sm text-gray-500">Towing</p>
+                                <p class="text-xl font-bold">11,000 lbs</span>
+                            </div>
+                        </div>
+                        <div class="mb-8">
+                            <h4 class="text-xl font-bold mb-3">Performance</h4>
+                            <p class="text-gray-700 mb-4">Cybertruck is built with an exterior shell made for ultimate durability and passenger protection. With up to 3,500 pounds of payload capacity and adjustable air suspension, Cybertruck is the most powerful truck ever.</p>
+                            <ul class="space-y-2 text-gray-700">
+                                <li class="flex items-start">
+                                    <i data-feather="check" class="w-5 h-5 text-black mr-2 mt-0.5"></i>
+                                    <span>800+ horsepower</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i data-feather="check" class="w-5 h-5 text-black mr-2 mt-0.5"></i>
+                                    <span>Tri Motor All-Wheel Drive</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i data-feather="check" class="w-5 h-5 text-black mr-2 mt-0.5"></i>
+                                    <span>Ultra-hard 30X Cold-rolled steel</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="mb-8">
+                            <h4 class="text-xl font-bold mb-3">Features</h4>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="flex items-center gap-3">
+                                    <i data-feather="cpu" class="w-5 h-5 text-black"></i>
+                                    <span>18.5" Touchscreen Display</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <i data-feather="users" class="w-5 h-5 text-black"></i>
+                                    <span>Seating for 6</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <i data-feather="music" class="w-5 h-5 text-black"></i>
+                                    <span>Premium Audio</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <i data-feather="navigation" class="w-5 h-5 text-black"></i>
+                                    <span>Full Self-Driving Capable</span>
+                                </div>
+                            </div>
+                        </div>
+                            <button class="bg-gray-900 text-white px-8 py-3 rounded-full font-medium hover:bg-gray-700 transition duration-300 w-full">
+Order Now
+                            </button>
+                            <button class="learn-more-btn mt-4 w-full inline-flex items-center justify-center">
+                                Learn more information
+                                <i data-feather="info" class="w-4 h-4 ml-3" aria-hidden="true"></i>
+                            </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Roadster -->
+            <div class="bg-white rounded-xl shadow-2xl overflow-hidden mb-16">
+                <div class="grid grid-cols-1 lg:grid-cols-2">
+                    <div class="h-[600px] lg:h-[800px]">
+                    <img src="https://cdn.24net.cz/5/obrazek/ikonka-14578" alt="Tesla Roadster" class="w-full h-full object-cover">
+</div>
+                    <div class="p-10">
+                        <h3 class="text-3xl font-bold mb-4">Roadster</h3>
+                        <p class="text-2xl text-black mb-6">$200,000</p>
+                        <div class="grid grid-cols-3 gap-4 mb-8">
+                            <div class="bg-gray-100 p-4 rounded-lg">
+                                <p class="text-sm text-gray-500">Range</p>
+                                <p class="text-xl font-bold">620 mi</p>
+                            </div>
+                            <div class="bg-gray-100 p-4 rounded-lg">
+                                <p class="text-sm text-gray-500">0-60 mph</p>
+                                <p class="text-xl font-bold">1.9s</p>
+                            </div>
+                            <div class="bg-gray-100 p-4 rounded-lg">
+                                <p class="text-sm text-gray-500">Top Speed</p>
+                                <p class="text-xl font-bold">250+ mph</p>
+                            </div>
+                        </div>
+                        <div class="mb-8">
+                            <h4 class="text-xl font-bold mb-3">Performance</h4>
+                            <p class="text-gray-700 mb-4">The quickest car in the world, with record-setting acceleration, range and performance. Base specifications include 620 miles of range, 1.9 second 0-60 mph and a top speed over 250 mph.</p>
+                            <ul class="space-y-2 text-gray-700">
+                                <li class="flex items-start">
+                                    <i data-feather="check" class="w-5 h-5 text-black mr-2 mt-0.5"></i>
+                                    <span>1,300+ horsepower</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i data-feather="check" class="w-5 h-5 text-black mr-2 mt-0.5"></i>
+                                    <span>All-Wheel Drive</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i data-feather="check" class="w-5 h-5 text-black mr-2 mt-0.5"></i>
+                                    <span>1/4 mile in 8.8s</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="mb-8">
+                            <h4 class="text-xl font-bold mb-3">Features</h4>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="flex items-center gap-3">
+                                    <i data-feather="cpu" class="w-5 h-5 text-black"></i>
+                                    <span>17" Touchscreen Display</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <i data-feather="users" class="w-5 h-5 text-black"></i>
+                                    <span>Seating for 4</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <i data-feather="music" class="w-5 h-5 text-black"></i>
+                                    <span>Premium Audio System</span>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <i data-feather="navigation" class="w-5 h-5 text-black"></i>
+                                    <span>Full Self-Driving Capable</span>
+                                </div>
+                            </div>
+                        </div>
+                            <button class="bg-gray-900 text-white px-8 py-3 rounded-full font-medium hover:bg-gray-700 transition duration-300 w-full">
+Order Now
+                            </button>
+                            <button class="learn-more-btn mt-4 w-full inline-flex items-center justify-center">
+                                Learn more information
+                                <i data-feather="info" class="w-4 h-4 ml-3" aria-hidden="true"></i>
+                            </button>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+        <!-- Cards: Promotions / Actions (added before Newsletter) -->
+    <section class="py-16 px-6 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-8">Explore More</h2>
+            <div class="cards-grid grid gap-6 sm:grid-cols-1 md:grid-cols-3">
+                <div class="card p-6 rounded-lg relative">
+                    <h3 class="text-xl font-semibold mb-2">Limited deals</h3>
+                    <p class="text-gray-800">Special offers for a limited time — save on select models and options today.</p>
+                    <a href="/" class="card-arrow" aria-label="Go to homepage">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </a>
+                </div>
+
+                <div class="card p-6 rounded-lg relative">
+                    <h3 class="text-xl font-semibold mb-2">Customize your car</h3>
+                    <p class="text-gray-800">Personalize colors, wheels and interior options to build your dream Tesla.</p>
+                    <a href="/" class="card-arrow" aria-label="Go to homepage">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </a>
+                </div>
+
+                <div class="card p-6 rounded-lg relative">
+                    <h3 class="text-xl font-semibold mb-2">Test ride</h3>
+                    <p class="text-gray-800">Book a test drive at your nearest showroom and experience the ride firsthand.</p>
+                    <a href="/" class="card-arrow" aria-label="Go to homepage">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Tesla Gallery Section -->
+    <section class="py-20 px-6 bg-white">
+            <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16">Tesla In Motion</h2>
+            </div>
+            <div class="max-w-6xl mx-auto px-6">
+            <div class="photo-grid">
+                <div class="photo-item">
+                    <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/h_1800,w_2880,c_fit,f_auto,q_auto:best/Model-S-Main-Hero-Desktop-LHD" alt="Model S">
+                </div>
+                <div class="photo-item">
+                    <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/h_1800,w_2880,c_fit,f_auto,q_auto:best/Model-3-Main-Hero-Desktop-LHD" alt="Model 3">
+                </div>
+                <div class="photo-item">
+                    <img src="https://d15-a.sdn.cz/d_15/c_img_oc_A/nO0bgvR9rXBjevbCx7EMXYax/b54e/tesla-model-y-performance-elektromobil-crossover.jpeg?fl=cro,0,0,3840,2160%7Cres,1200,,1%7Cjpg,80,,1" alt="Model Y">
+                </div>
+                <div class="photo-item">
+                    <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/h_1800,w_2880,c_fit,f_auto,q_auto:best/Model-X-Main-Hero-Desktop-LHD" alt="Model X">
+                </div>
+                <div class="photo-item">
+                    <img src="https://www.automobilrevue.cz/obrazek/60ad1d8e3d350/tesla-roadster-cover-1-60ad28fe9128d.jpg" alt="Roadster">
+                </div>
+                <div class="photo-item">
+                    <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/h_1800,w_2880,c_fit,f_auto,q_auto:best/Cybertruck-Main-Hero-Desktop" alt="Cybertruck">
+                </div>
+            </div>
+            </div>
+
+            <!-- What's Coming Soon -->
+            <section id="coming-soon" class="py-12 mt-12">
+                <div class="max-w-7xl mx-auto">
+                    <h3 class="text-2xl font-bold mb-6">What's coming soon?</h3>
+                    <div class="upcoming">
+                        <div class="upcoming-image-wrapper">
+                            <img src="https://digitalassets.tesla.com/tesla-contents/image/upload/h_1200,w_2880,c_fit,f_auto,q_auto:best/Model-S-Main-Hero-Desktop-LHD" alt="Coming Soon Tesla" class="upcoming-image">
+                        </div>
+                        <div class="upcoming-info flex flex-col md:flex-row items-start md:items-center gap-6 mt-6">
+                            <div class="flex-1">
+                                <h4 class="text-xl font-semibold">Next-generation Platform</h4>
+                                <p class="text-gray-600 mt-2">A bold look, improved range and a reimagined interior experience — stay tuned for official details.</p>
+                            </div>
+                            <div class="flex-none">
+                                <a href="#" class="upcoming-cta inline-flex items-center gap-3 px-5 py-3 border rounded-full bg-black text-white hover:scale-105 transition-transform duration-200">
+                                    Learn more
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M12 5l7 7-7 7"></path></svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </section>
+<!-- Test Drive Section -->
+    <section class="test-drive">
+        <div class="max-w-6xl mx-auto">
+            <h2>Experience Tesla</h2>
+            <p>Schedule a test drive today and experience the future of driving first-hand at one of our showrooms.</p>
+            <button class="test-drive-btn">Book a Test Drive</button>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="py-20 px-6 bg-gray-50">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Stay Connected with Tesla</h2>
+            <p class="text-gray-600 mb-10 text-lg">Subscribe to our newsletter for exclusive updates, latest news, and special offers.</p>
+            <div class="relative max-w-xl mx-auto">
+                <div class="relative">
+                    <span class="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                    </span>
+                    <input type="email" placeholder="Enter your email address" class="w-full pl-12 pr-12 md:pr-16 py-3 border border-gray-300 rounded-full focus:outline-none focus:border-black transition-colors duration-300">
+                    <button class="absolute right-2 top-1/2 -translate-y-1/2 bg-black text-white p-2 rounded-full hover:bg-gray-800 transition duration-300 flex items-center justify-center" aria-label="Subscribe">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <p class="text-gray-500 text-xs mt-4">By subscribing, you agree to our Privacy Policy and consent to receive updates from Tesla</p>
+        </div>
+    </section>
+
+    <custom-footer></custom-footer>
+<!-- Scripts -->
+    <script src="components/navbar.js"></script>
+    <script src="components/footer.js"></script>
+    <script src="components/zoom.js"></script>
+    <script src="script.js"></script>
+    <script>feather.replace();</script>
+</body>
+</html>
