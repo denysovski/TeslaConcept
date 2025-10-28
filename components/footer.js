@@ -130,7 +130,7 @@ class CustomFooter extends HTMLElement {
           </div>
         </div>
         <div class="copyright">
-          &copy; ${new Date().getFullYear()} Tesla, Inc. All rights reserved.
+          &copy; ${new Date().getFullYear()} @denysovski on IG. All rights reserved.
         </div>
       </footer>
     `;

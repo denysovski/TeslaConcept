@@ -8,15 +8,22 @@ class CustomNavbar extends HTMLElement {
           top: 0;
           left: 0;
           right: 0;
-          background-color: transparent;
           color: white;
           transition: all 0.28s ease;
           padding: 1rem 2.5rem;
           display: flex;
           justify-content: space-between;
           align-items: center;
-          z-index: 1000;
-          height: 80px;
+          z-index: 900 !important;
+          height: 60px;
+          opacity: 0;
+          animation: fadeInNav 0.8s ease forwards;
+        }
+
+        @keyframes fadeInNav {
+          to {
+            opacity: 1;
+          }
         }
 
         nav.scrolled {
@@ -28,7 +35,7 @@ class CustomNavbar extends HTMLElement {
         .logo img {
           filter: brightness(0) invert(1);
           transition: filter 0.25s;
-          height: 60px;
+          height: 45px;
           width: auto;
         }
 
@@ -42,6 +49,7 @@ class CustomNavbar extends HTMLElement {
           list-style: none;
           margin: 0;
           padding: 0;
+          z-index: 955;
         }
 
         .nav-links a {
@@ -77,31 +85,70 @@ class CustomNavbar extends HTMLElement {
           cursor: pointer;
           padding: 0.25rem;
           color: white;
+          position: relative;
         }
 
         nav.scrolled .mobile-menu-button {
           color: black;
         }
 
+        /* Hamburger menu animation to X */
+        .mobile-menu-button svg {
+          transition: opacity 0.2s ease;
+        }
+
+        .mobile-menu-button.active .hamburger-icon {
+          opacity: 0;
+        }
+
+        .mobile-menu-button.active .close-icon {
+          opacity: 1;
+        }
+
+        .close-icon {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          opacity: 0;
+          transition: opacity 0.2s ease;
+        }
+
         /* ensure svg icons inherit the color (feather icons use stroke="currentColor") */
         nav svg { color: inherit; }
+
+        /* Scroll progress bar (appears only when scrolled) */
+        .scroll-progress {
+          position: fixed;
+          top: 90px; /* nav height (60px) + 24px offset */
+          left: 0;
+          height: 3px;
+          width: 0%;
+          background: #b8081cff; /* black line matches scrolled state */
+          opacity: 0;
+          transition: width 0.08s linear, opacity 0.2s ease;
+          z-index: 950; /* above page content, below mobile drawer */
+          pointer-events: none;
+        }
 
         /* Mobile side drawer: slides in from the right and starts directly below the nav (nav height: 80px) */
         .mobile-menu {
           position: fixed;
-          top: 112px; /* align top with navbar height */
+          top: 92px; /* align with navbar height */
           right: 0;
           width: 200px;
           max-width: 85vw;
-          height: calc(100vh - 80px);
+          height: calc(100vh - 60px);
           transform: translateX(110%); /* hidden off-canvas */
-          background-color: #ffffff;
-            color: #000000;
-            z-index: 1001; /* make sure drawer is above the nav so first link isn't covered */
+          background-color: #ffffffff !important;
+          color: #000000;
+          z-index: 900 !important; /* above navbar to prevent overlay */
           transition: transform 0.36s cubic-bezier(.2,.9,.2,1);
           box-shadow: 0 18px 40px rgba(0,0,0,0.12);
-            overflow-y: auto;
-            padding: 4.5rem 1.5rem 1.5rem; /* increased top padding so first link sits lower and is fully visible */
+          overflow-y: auto;
+          padding: 2rem 1.5rem 1.5rem; /* normal top padding */
+          border-top-left-radius: 45px;
+          border-bottom-left-radius: 45px;
         }
 
         /* open state brings drawer into view */
@@ -116,7 +163,7 @@ class CustomNavbar extends HTMLElement {
           display: flex; 
           flex-direction: column; 
           gap: 2rem; 
-          background-color: transparent;
+          background-color: #ffffff !important;
           margin-top: 170px;
         }
         
@@ -171,14 +218,20 @@ class CustomNavbar extends HTMLElement {
           <img src="https://upload.wikimedia.org/wikipedia/commons/e/e8/Tesla_logo.png" alt="Tesla Logo">
         </a>
         <button class="mobile-menu-button" id="mobile-menu-button" aria-label="Open menu">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <svg class="hamburger-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <line x1="3" y1="6" x2="21" y2="6"></line>
             <line x1="3" y1="12" x2="21" y2="12"></line>
             <line x1="3" y1="18" x2="21" y2="18"></line>
           </svg>
+          <svg class="close-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
         </button>
         <ul class="nav-links"></ul>
       </nav>
+
+      <div id="scroll-progress" class="scroll-progress" aria-hidden="true"></div>
 
       <div id="mobile-menu" class="mobile-menu" role="dialog" aria-modal="true" aria-hidden="true">
         <nav aria-label="Mobile navigation">
@@ -188,9 +241,10 @@ class CustomNavbar extends HTMLElement {
     `;
 
     // cache nav element and attach scroll listener from the element lifecycle so it always runs
-    this._nav = this.shadowRoot.querySelector('nav');
+  this._nav = this.shadowRoot.querySelector('nav');
     this._mobileMenuButton = this.shadowRoot.getElementById('mobile-menu-button');
     this._mobileMenu = this.shadowRoot.getElementById('mobile-menu');
+  this._progressBar = this.shadowRoot.getElementById('scroll-progress');
 
     // render nav items from a single source so desktop and mobile stay in sync
     const navItems = [
@@ -207,6 +261,18 @@ class CustomNavbar extends HTMLElement {
       mobileUl.innerHTML = navItems.map(i => `<li><a href="${i.href}" data-close>${i.label}</a></li>`).join('');
     }
 
+    // Update progress bar width based on document scroll position
+    const updateProgress = () => {
+      if (!this._progressBar) return;
+      const doc = document.documentElement;
+      const body = document.body;
+      const scrollTop = window.pageYOffset || doc.scrollTop || body.scrollTop || 0;
+      const max = (doc.scrollHeight || body.scrollHeight) - window.innerHeight;
+      const pct = max > 0 ? Math.min(100, Math.max(0, (scrollTop / max) * 100)) : 0;
+      this._progressBar.style.width = pct + '%';
+      this._progressBar.style.opacity = scrollTop > 0 ? '1' : '0';
+    };
+
     this._onScroll = () => {
       if (!this._nav) return;
       // when at the very top (scrollY === 0) keep transparent; else scrolled state
@@ -216,17 +282,21 @@ class CustomNavbar extends HTMLElement {
       } else {
         this._nav.classList.remove('scrolled');
       }
+      updateProgress();
     };
 
   window.addEventListener('scroll', this._onScroll);
+    window.addEventListener('resize', updateProgress);
     // run once to set initial state
     this._onScroll();
+    updateProgress();
 
     // setup mobile menu toggle inside shadow DOM
     if (this._mobileMenuButton && this._mobileMenu) {
       this._mobileMenuButton.addEventListener('click', () => {
         const open = this._mobileMenu.classList.toggle('open');
         this._mobileMenu.setAttribute('aria-hidden', !open);
+        this._mobileMenuButton.classList.toggle('active', open);
         // NOTE: intentionally do NOT lock body/document scroll — keep native scrolling enabled
       });
 
@@ -235,6 +305,7 @@ class CustomNavbar extends HTMLElement {
         link.addEventListener('click', () => {
           this._mobileMenu.classList.remove('open');
           this._mobileMenu.setAttribute('aria-hidden', 'true');
+          this._mobileMenuButton.classList.remove('active');
         });
       });
 
@@ -243,6 +314,7 @@ class CustomNavbar extends HTMLElement {
         if (window.innerWidth > 768 && this._mobileMenu.classList.contains('open')) {
           this._mobileMenu.classList.remove('open');
           this._mobileMenu.setAttribute('aria-hidden', 'true');
+          this._mobileMenuButton.classList.remove('active');
         }
       };
       window.addEventListener('resize', this._onResize);
@@ -257,7 +329,7 @@ class CustomNavbar extends HTMLElement {
       let current = '';
       sections.forEach(section => {
         const top = section.offsetTop;
-        if (window.pageYOffset >= (top - 160)) current = section.id;
+        if (window.pageYOffset >= (top - 140)) current = section.id;
       });
 
       navLinks.forEach(link => {
@@ -280,7 +352,7 @@ class CustomNavbar extends HTMLElement {
         e.preventDefault();
         const target = document.querySelector(href);
         if (target) {
-          window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
+          window.scrollTo({ top: target.offsetTop - 60, behavior: 'smooth' });
         }
       });
     });
@@ -295,9 +367,10 @@ class CustomNavbar extends HTMLElement {
         if (this._mobileMenu) {
           this._mobileMenu.classList.remove('open');
           this._mobileMenu.setAttribute('aria-hidden', 'true');
+          this._mobileMenuButton.classList.remove('active');
         }
         if (target) {
-          window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
+          window.scrollTo({ top: target.offsetTop - 60, behavior: 'smooth' });
         }
       });
     });
