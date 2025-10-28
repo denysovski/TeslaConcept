@@ -16,3 +16,5 @@ This project includes the design and development of Tesla’s homepage — showc
 
 ## Status
 Design and development completed — a polished, ready-to-launch foundation for future Tesla web expansion and product integration.
+
+<img alt="screencapture-127-0-0-1-5500-2025-10-28-11_19_45" src="https://github.com/user-attachments/assets/fc16a1b0-d14e-498a-8cf2-d1e7bf6c1c6a" />
