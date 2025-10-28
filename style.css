@@ -16,6 +16,101 @@
     background: #555;
 }
 
+/* Landing page fade-in animation */
+.landing-content {
+    opacity: 0;
+    animation: fadeInContent 0.8s ease 0.8s forwards;
+}
+
+@keyframes fadeInContent {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Scroll down indicator animation */
+.scroll-indicator-wrapper {
+    animation: fadeInScroll 1s ease 1.6s forwards;
+    opacity: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@keyframes fadeInScroll {
+    to {
+        opacity: 1;
+    }
+}
+
+.mouse {
+    position: relative;
+    width: 32px;
+    height: 52px;
+    border: 3px solid rgba(255, 255, 255, 0.8);
+    border-radius: 50px;
+    background: transparent;
+}
+
+.mouse-wheel {
+    position: absolute;
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 6px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 100%;
+    animation: mouseWheelBounce 3.2s ease-in-out infinite;
+}
+
+@keyframes mouseColorSlide {
+    0%, 100% {
+        background-position: 0% 100%;
+        border-color: rgba(255, 255, 255, 0.8);
+    }
+    18% {
+        background-position: 0% 0%;
+        border-color: rgba(255, 255, 255, 1);
+    }
+    22% {
+        background-position: 0% 100%;
+        border-color: rgba(255, 255, 255, 0.8);
+    }
+}
+
+@keyframes mouseWheelBounce {
+    0% {
+        transform: translateX(-50%) translateY(0);
+        opacity: 1;
+    }
+    50% {
+        transform: translateX(-50%) translateY(18px);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(-50%) translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes mouseNudge {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    10% {
+        transform: translateY(4px);
+    }
+    20% {
+        transform: translateY(0);
+    }
+}
+
 /* Custom animations */
 /* Disable the previous upward fade-in animation globally (user requested no landing slide animation) */
 @keyframes fadeIn {
@@ -49,6 +144,7 @@ html {
     border-radius: 6px;
     display: flex;
     background: #fff;
+    position: relative;
 }
 .photo-grid .photo-item img {
     width: 100%;
@@ -59,7 +155,75 @@ html {
     filter: grayscale(85%) contrast(110%);
 }
 .photo-grid .photo-item:hover img { transform: scale(1.03); filter: grayscale(40%) contrast(115%); }
-/* photo titles removed per request */
+
+/* Photo labels with smooth slide-up animation */
+.photo-label {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    color: white;
+    font-weight: 700;
+    padding: 13px 17px;
+    background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.5) 70%, transparent 100%);
+    transform: translateY(100%);
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 100%;
+    font-size: 24px;
+    line-height: 1.2;
+    text-align: left;
+}
+
+.photo-grid .photo-item:hover .photo-label {
+    transform: translateY(0);
+}
+
+/* Photo info icon with smooth fade and slide animation */
+.photo-info-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 36px;
+    height: 36px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+                transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                background 0.3s ease,
+                box-shadow 0.3s ease;
+    cursor: pointer;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.photo-info-icon i,
+.photo-info-icon svg {
+    color: #000;
+    stroke: #000;
+    transition: color 0.3s ease, stroke 0.3s ease;
+}
+
+.photo-grid .photo-item:hover .photo-info-icon {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.photo-info-icon:hover {
+    background: rgba(0, 0, 0, 0.95);
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.photo-info-icon:hover i,
+.photo-info-icon:hover svg {
+    color: #fff;
+    stroke: #fff;
+}
 
 /* Mosaic span rules */
 .photo-grid .photo-item:nth-child(1) { grid-column: span 6; grid-row: span 2; }
@@ -149,7 +313,7 @@ html {
 /* Test drive section */
 .test-drive {
     background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://digitalassets.tesla.com/tesla-contents/image/upload/h_1800,w_2880,c_fit,f_auto,q_auto:best/Model-3-Main-Hero-Desktop-LHD');
-background-size: cover;
+    background-size: cover;
     background-position: center;
     background-attachment: fixed;
     padding: 100px 20px;
@@ -159,6 +323,28 @@ background-size: cover;
 .test-drive h2 {
     font-size: 2.5rem;
     margin-bottom: 20px;
+}
+
+/* Dealership Locator section */
+.dealership-locator {
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://4kwallpapers.com/images/wallpapers/tesla-model-3-3840x2160-16627.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    padding: 100px 20px;
+    text-align: center;
+    color: white;
+}
+.dealership-locator h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    text-align: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    width: auto !important;
+}
+.dealership-locator h2::after {
+    display: none;
 }
 
 /* Section headers */
@@ -205,6 +391,149 @@ section:nth-child(even) h2::after {
     background: #f3f3f3;
     transform: translateY(-2px);
     box-shadow: 0 8px 18px rgba(0,0,0,0.12);
+}
+
+.dealership-btn {
+    background: #ffffff;
+    color: #000000;
+    padding: 15px 30px;
+    border-radius: 30px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.dealership-btn:hover {
+    background: #333333;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(0,0,0,0.3);
+}
+.dealership-btn svg {
+    transition: stroke 0.3s ease;
+}
+.dealership-btn:hover svg {
+    stroke: #ffffff;
+}
+
+/* Sustainability Section */
+.sustainability-section {
+    background: #ffffff;
+}
+
+.sustainability-container {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 60px;
+    align-items: stretch;
+    min-height: 500px;
+}
+
+.sustainability-content {
+    padding-right: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.sustainability-content h2 {
+    color: #000;
+    line-height: 1.2;
+}
+
+.sustainability-image {
+    width: 100%;
+    height: 100%;
+    min-height: 500px;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.sustainability-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.sustainability-image img:hover {
+    transform: scale(1.05);
+}
+
+.sustainability-small-image {
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    border-radius: 12px;
+    margin-bottom: 30px;
+}
+
+.sustainability-small-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.sustainability-small-image img:hover {
+    transform: scale(1.05);
+}
+
+.sustainability-btn {
+    background: #000000;
+    color: #ffffff;
+    padding: 15px 30px;
+    border-radius: 30px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sustainability-btn:hover {
+    background: #333333;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(0,0,0,0.3);
+}
+
+.sustainability-btn svg {
+    transition: transform 0.3s ease;
+}
+
+.sustainability-btn:hover svg {
+    transform: translateX(5px);
+}
+
+/* Responsive design for sustainability section */
+@media (max-width: 1024px) {
+    .sustainability-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    
+    .sustainability-content {
+        padding-right: 0;
+    }
+    
+    .sustainability-image {
+        height: 500px;
+    }
+}
+
+@media (max-width: 768px) {
+    .sustainability-content h2 {
+        font-size: 2.5rem;
+    }
+    
+    .sustainability-image {
+        height: 400px;
+    }
 }
 
 /* Learn more button: white background, 1px black border, black text, icon to the right */
@@ -307,6 +636,26 @@ section {
 /* center cards within grid columns so smaller max-width looks centered */
 .cards-grid { justify-items: center; }
 
+/* Experience section cards */
+.experience-card {
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    cursor: pointer;
+}
+
+.experience-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+}
+
+.experience-card:hover .card-arrow {
+    background: #000;
+}
+
+.experience-card:hover .card-arrow svg {
+    stroke: #fff;
+}
+
 .card-arrow {
     position: absolute;
     top: 14px;
@@ -320,9 +669,11 @@ section {
     justify-content: center;
     box-shadow: 0 4px 10px rgba(0,0,0,0.06);
     color: #000;
+    transition: background 0.3s ease, transform 0.3s ease;
 }
 .card-arrow svg { 
     stroke: #000;
+    transition: stroke 0.3s ease;
 }
 
 /* Adjust card text spacing */
@@ -336,6 +687,95 @@ section {
     line-height: 1.5;
 }
 
+/* News & Articles section */
+.news-card {
+    border: 1px solid #f0f0f0;
+    border-radius: 16px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    transform: translateY(0px);
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.news-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.1);
+}
+
+.news-card h3 {
+    color: #000;
+    line-height: 1.4;
+}
+
+.news-card p {
+    line-height: 1.6;
+}
+
+.news-arrow {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease, transform 0.3s ease;
+    color: #000;
+}
+
+.news-arrow:hover {
+    background: #000;
+    transform: translateX(4px);
+}
+
+.news-arrow:hover svg {
+    stroke: #fff;
+}
+
+.news-arrow svg {
+    stroke: #000;
+    transition: stroke 0.3s ease;
+}
+
+.autopilot-arrow {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease, transform 0.3s ease;
+    color: #fff;
+    margin-top: 2px;
+}
+
+.autopilot-arrow:hover,
+a.group:hover .autopilot-arrow {
+    background: #d0d0d0;
+    transform: translateX(4px);
+}
+
+.autopilot-arrow:hover svg,
+a.group:hover .autopilot-arrow svg {
+    stroke: #000;
+}
+
+.autopilot-arrow svg {
+    stroke: #fff;
+    transition: stroke 0.3s ease;
+}
+
+/* Autopilot description hover effect */
+a.group:hover p {
+    transform: scale(1.02);
+    color: #000;
+}
+
+a.group p {
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
 /* Safety fallbacks for any leftover blue/red utility classes: force neutral black/gray */
 .bg-blue-600 { background-color: #000 !important; color: #fff !important; }
 .hover\:bg-blue-800:hover { background-color: #111 !important; }
@@ -343,3 +783,202 @@ section {
 .text-blue-600, .text-blue-800 { color: #000 !important; }
 
 /* Slightly reduce contrast on gallery images for minimal look (handled per .photo-item) */
+
+/* Carousel Styles */
+.carousel-container {
+    position: relative;
+    width: 100%;
+    min-height: 700px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 2000px;
+}
+
+.carousel-track {
+    position: relative;
+    width: 100%;
+    max-width: 1000px;
+    height: 650px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel-card {
+    position: absolute;
+    width: 100%;
+    max-width: 900px;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.carousel-card.active {
+    opacity: 1;
+    transform: translateX(0) scale(1) translateZ(0);
+    z-index: 10;
+    pointer-events: all;
+}
+
+.carousel-card.prev {
+    opacity: 0.3;
+    transform: translateX(-30%) scale(0.85) translateZ(-200px);
+    z-index: 5;
+    pointer-events: none;
+}
+
+.carousel-card.next {
+    opacity: 0.3;
+    transform: translateX(30%) scale(0.85) translateZ(-200px);
+    z-index: 5;
+    pointer-events: none;
+}
+
+.carousel-card.hidden {
+    opacity: 0;
+    transform: scale(0.7);
+    z-index: 1;
+}
+
+/* Navigation Arrows */
+.carousel-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.8);
+    border: none;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 20;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.carousel-nav:hover {
+    background: rgba(0, 0, 0, 0.95);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-nav-left {
+    left: 20px;
+}
+
+.carousel-nav-right {
+    right: 20px;
+}
+
+.carousel-nav svg {
+    stroke: white;
+}
+
+/* Carousel Indicators */
+.carousel-indicators {
+    position: absolute;
+    bottom: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 12px;
+    z-index: 20;
+}
+
+.indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.3);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.indicator:hover {
+    background: rgba(0, 0, 0, 0.5);
+    transform: scale(1.2);
+}
+
+.indicator.active {
+    background: rgba(0, 0, 0, 0.9);
+    width: 30px;
+    border-radius: 5px;
+}
+
+@media (max-width: 768px) {
+    .carousel-indicators {
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(8px);
+        padding: 8px 16px;
+        border-radius: 20px;
+    }
+    
+    .indicator {
+        background: rgba(0, 0, 0, 0.4);
+    }
+    
+    .indicator.active {
+        background: rgba(0, 0, 0, 0.7);
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    .carousel-container {
+        min-height: 800px;
+    }
+    
+    .carousel-track {
+        height: 650px;
+    }
+    
+    .carousel-card.prev,
+    .carousel-card.next {
+        opacity: 0.2;
+        transform: translateX(-25%) scale(0.8) translateZ(-150px);
+    }
+    
+    .carousel-card.next {
+        transform: translateX(25%) scale(0.8) translateZ(-150px);
+    }
+}
+
+@media (max-width: 768px) {
+    .carousel-container {
+        min-height: 900px;
+    }
+    
+    .carousel-track {
+        height: 700px;
+    }
+    
+    .carousel-card.prev,
+    .carousel-card.next {
+        opacity: 0;
+        transform: translateX(-50%) scale(0.7);
+    }
+    
+    .carousel-card.next {
+        transform: translateX(50%) scale(0.7);
+    }
+    
+    .carousel-nav {
+        width: 48px;
+        height: 48px;
+    }
+    
+    .carousel-nav-left {
+        left: 10px;
+    }
+    
+    .carousel-nav-right {
+        right: 10px;
+    }
+}
